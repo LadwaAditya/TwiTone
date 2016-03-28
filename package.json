@@ -7,7 +7,11 @@
 	},
 	"dependencies": {
 		"express": "4.13.x",
-		"cfenv": "1.0.x"
+		"cfenv": "1.0.x",
+		"qs": "*",
+		"ejs": "~0.8.5",
+		"twit": "^1.1.18"
+
 	},
 	"repository": {},
 	"engines": {
