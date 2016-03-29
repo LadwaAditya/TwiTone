@@ -26,17 +26,20 @@ var client = new Twitter({
     access_token_secret: '4NKRnC2URRWTVLD9J4lDanrgEHiQ0uFEvyooJBnmjH8iD'
 });
 
-
+//Route to retrive tweets
 app.get('/tweet/:user', function (req, res) {
-
     var params = {screen_name: req.params.user};
     client.get('statuses/user_timeline', params, function (error, tweets, response) {
         if (!error) {
             res.json(tweets);
         }
     });
-
 });
+
+app.get('/tone/:tweet', function (req, res) {
+    console.log(req.params.tweet);
+});
+
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
 
