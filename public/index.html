@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="TwiTone">
 
 <head>
     <title>NodeJS Starter Application</title>
@@ -11,7 +11,7 @@
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 </head>
 
-<body>
+<body  >
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -29,22 +29,31 @@
 </nav>
 
 
-<div class="container" id="main">
+<div class="container" id="main" ng-controller="MainCtrl">
 
     <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">@</span>
         <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
 
     </div><!-- input-group-->
-    <center><a class="btn btn-primary btn-lg" href="#" role="button">Get Tweets</a></center>
+    <center><button class="btn btn-primary btn-lg" ng-click="getTweets()">Get Tweets</button></center>
+
+    <ul>
+        <li ng-repeat="phone in phones">
+            <span>{{phone.name}}</span>
+        </li>
+    </ul>
 
 </div><!-- /.container -->
 
 
-</body>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+
+<script src="js/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
         integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
         crossorigin="anonymous"></script>
+<script src="js/MainCtrl.js"></script>
+
+</body>
 </html>
