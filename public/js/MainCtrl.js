@@ -1,17 +1,16 @@
-var app = angular.module('TwiTone',[]);
+var app = angular.module('TwiTone', []);
 
-app.controller('MainCtrl',['$scope','$http',  function ($scope, $http) {
+app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
 
-    $scope.phones = [
-        {'name': 'Nexus S',
-            'snippet': 'Fast just got faster with Nexus S.'},
-        {'name': 'Motorola XOOM™ with Wi-Fi',
-            'snippet': 'The Next, Next Generation tablet.'},
-        {'name': 'MOTOROLA XOOM™',
-            'snippet': 'The Next, Next Generation tablet.'}
-    ];
 
     $scope.getTweets = function () {
-        console.log("Clicked");
+        console.log($scope.user.name);
+        $http.get('tweet/' + $scope.user.name).success(function (data) {
+            var tweets = [];
+            $.each(data, function (i, obj) {
+                tweets.push(obj.text);
+            });
+            $scope.tweets = tweets;
+        })
     }
 }]);

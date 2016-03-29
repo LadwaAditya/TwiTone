@@ -33,14 +33,14 @@
 
     <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">@</span>
-        <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+        <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" ng-model="user.name">
 
     </div><!-- input-group-->
     <center><button class="btn btn-primary btn-lg" ng-click="getTweets()">Get Tweets</button></center>
 
     <ul>
-        <li ng-repeat="phone in phones">
-            <span>{{phone.name}}</span>
+        <li ng-repeat="tweet in tweets">
+            <span>{{tweet}}</span>
         </li>
     </ul>
 
