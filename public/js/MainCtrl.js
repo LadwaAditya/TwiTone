@@ -24,8 +24,11 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
     };
 
     $scope.analyze = function (tweet) {
+        tweet = tweet.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');
+        console.log(tweet);
         $http.get('tone/' + tweet).success(function (data) {
             $scope.status = tweet;
+
             var obj = data["document_tone"]["tone_categories"];
 
             var emotionalTone = obj[0]["tones"];
