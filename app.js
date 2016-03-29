@@ -47,7 +47,6 @@ app.get('/tweet/:user', function (req, res) {
 
 app.get('/tone/:tweet', function (req, res) {
     var tweet = req.params.tweet;
-    console.log(tweet);
     tone_analyzer.tone({text: tweet}, function (err, tone) {
         res.json(tone);
     });

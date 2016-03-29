@@ -45,22 +45,41 @@
 
     <ul>
         <div ng-repeat="tweet in tweets">
+            <button class="btn btn-primary btn-sm" ng-click="analyze(tweet)" data-toggle="modal" data-target="#myModel">
+                Analyze
+            </button>
+            <span>&nbsp;</span>
             <span>{{tweet}}</span>
-            <button class="btn btn-primary btn-sm" ng-click="analyze(tweet)">Analyze</button>
-            <br>
+            <br><br>
         </div>
     </ul>
+
+    <div id="myModel" class="modal fade" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{status}}</h4>
+            </div>
+            <div class="modal-body" id="chartContainer" style="height: 300px; width: 35%;">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 
 </div><!-- /.container -->
 
 
 <script src="js/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
         integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
         crossorigin="anonymous"></script>
+<script src="js/canvasjs.min.js"></script>
 <script src="js/MainCtrl.js"></script>
+
 
 </body>
 </html>
