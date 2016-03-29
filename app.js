@@ -7,8 +7,10 @@
 // This application uses express as its web server
 // for more info, see: http://expressjs.com
 var express = require('express');
-
 var Twitter = require('twitter');
+var watson = require('watson-developer-cloud');
+
+
 // cfenv provides access to your Cloud Foundry environment
 // for more info, see: https://www.npmjs.com/package/cfenv
 var cfenv = require('cfenv');
@@ -26,6 +28,13 @@ var client = new Twitter({
     access_token_secret: '4NKRnC2URRWTVLD9J4lDanrgEHiQ0uFEvyooJBnmjH8iD'
 });
 
+var tone_analyzer = watson.tone_analyzer({
+    username: '4dad1e26-422f-45d2-91b0-1518895e916e',
+    password: 'VCGx0VnwfcRG',
+    version: 'v3-beta',
+    version_date: '2016-02-11'
+});
+
 //Route to retrive tweets
 app.get('/tweet/:user', function (req, res) {
     var params = {screen_name: req.params.user};
@@ -37,7 +46,11 @@ app.get('/tweet/:user', function (req, res) {
 });
 
 app.get('/tone/:tweet', function (req, res) {
-    console.log(req.params.tweet);
+    var tweet = req.params.tweet;
+    console.log(tweet);
+    tone_analyzer.tone({text: tweet}, function (err, tone) {
+        res.json(tone);
+    });
 });
 
 // get the app environment from Cloud Foundry
