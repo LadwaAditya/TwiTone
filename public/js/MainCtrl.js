@@ -29,15 +29,15 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
             var obj = data["document_tone"]["tone_categories"];
 
             var emotionalTone = obj[0]["tones"];
-            var writeingTone = obj[1]["tones"];
+            var writingTone = obj[1]["tones"];
             var socialTone = obj[2]["tones"];
 
             var emotionalScore = [];
-            var writeingScore = [];
+            var writingScore = [];
             var socialScore = [];
 
             var emotionalName = [];
-            var writeingName = [];
+            var writingName = [];
             var socialName = [];
 
             $.each(emotionalTone, function (i, o) {
@@ -45,9 +45,9 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
                 emotionalName.push(o["tone_name"]);
             });
 
-            $.each(writeingTone, function (i, o) {
-                writeingScore.push(o["score"]);
-                writeingName.push(o["tone_name"]);
+            $.each(writingTone, function (i, o) {
+                writingScore.push(o["score"]);
+                writingName.push(o["tone_name"]);
             });
 
             $.each(socialTone, function (i, o) {
@@ -55,8 +55,10 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
                 socialName.push(o["tone_name"]);
             });
 
-            console.log(emotionalScore);
-            var chart = new CanvasJS.Chart("chartContainer", {
+            console.log(writingScore);
+            console.log(writingName);
+            console.log();
+            var emotionalChart = new CanvasJS.Chart("chartEmotional", {
 
                 title: {
                     text: "Emotion summary"
@@ -70,11 +72,6 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
                     labelFontStyle: "normal",
                     labelFontWeight: "normal",
                     labelFontFamily: "Lucida Sans Unicode"
-
-                },
-                axisY2: {
-                    interlacedColor: "rgba(1,77,101,.2)",
-                    gridColor: "rgba(1,77,101,.1)"
 
                 },
 
@@ -98,8 +95,64 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
                 ]
             });
 
-            chart.render();
+            var languageChart = new CanvasJS.Chart("chartLanguage", {
+                title: {
+                    text: "Language Style summary "
+                },
+                data: [
+                    {
 
+                        type: "column",
+                        dataPoints: [
+                            {label: writingName[0], y: writingScore[0]},
+                            {label: writingName[1], y: writingScore[1]},
+                            {label: writingName[2], y: writingScore[2]}
+
+                        ]
+                    }
+                ]
+            });
+
+            var socialChart = new CanvasJS.Chart("chartSocial", {
+
+                title: {
+                    text: "Social summary"
+
+                },
+                animationEnabled: true,
+                axisX: {
+                    interval: 1,
+                    gridThickness: 0,
+                    labelFontSize: 10,
+                    labelFontStyle: "normal",
+                    labelFontWeight: "normal",
+                    labelFontFamily: "Lucida Sans Unicode"
+
+                },
+
+                data: [
+                    {
+                        type: "bar",
+                        name: "companies",
+                        axisYType: "secondary",
+                        color: "#014D65",
+                        dataPoints: [
+
+                            {y: socialScore[0], label: socialName[0]},
+                            {y: socialScore[1], label: socialName[1]},
+                            {y: socialScore[2], label: socialName[2]},
+                            {y: socialScore[3], label: socialName[3]},
+                            {y: socialScore[4], label: socialName[4]}
+
+                        ]
+                    }
+
+                ]
+            });
+
+            socialChart.render();
+            languageChart.render();
+            emotionalChart.render();
 
         })
     }
