@@ -2,7 +2,7 @@
 <html ng-app="TwiTone">
 
 <head>
-    <title>NodeJS Starter Application</title>
+    <title>TwiTone</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +11,7 @@
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 </head>
 
-<body  >
+<body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -24,28 +24,33 @@
             </button>
             <a class="navbar-brand" href="#">TwiTone</a>
         </div>
-
     </div>
 </nav>
+<br/><br/>
 
 
 <div class="container" id="main" ng-controller="MainCtrl">
 
     <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">@</span>
-        <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" ng-model="user.name">
+        <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1"
+               ng-model="user.name">
 
     </div><!-- input-group-->
-    <center><button class="btn btn-primary btn-lg" ng-click="getTweets()">Get Tweets</button></center>
+    <center>
+        <button class="btn btn-primary btn-lg" ng-click="getTweets()">Get Tweets</button>
+    </center>
+
+    <br><br>
 
     <ul>
-        <li ng-repeat="tweet in tweets">
+        <div ng-repeat="tweet in tweets">
             <span>{{tweet}}</span>
-        </li>
+            <button class="btn btn-primary btn-sm" ng-click="analyze(tweet)">Analyze</button>
+        </div>
     </ul>
 
 </div><!-- /.container -->
-
 
 
 <script src="js/angular.min.js"></script>
