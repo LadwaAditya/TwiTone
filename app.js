@@ -35,6 +35,12 @@ var tone_analyzer = watson.tone_analyzer({
     version_date: '2016-02-11'
 });
 
+var relationship_extraction = watson.relationship_extraction({
+    username: 'c5755456-3dc4-42a0-80c3-40ad5c5e3024',
+    password: 'sHBLGYfVfB4l',
+    version: 'v1-beta'
+});
+
 //Route to retrive tweets
 app.get('/tweet/:user', function (req, res) {
     var params = {screen_name: req.params.user};
@@ -50,6 +56,20 @@ app.get('/tone/:tweet', function (req, res) {
     tone_analyzer.tone({text: tweet}, function (err, tone) {
         res.json(tone);
     });
+});
+
+app.get('/relationship/:text', function (req, res) {
+    var text = req.params.text;
+    relationship_extraction.extract({
+            text: text,
+            dataset: 'ie-en-news'
+        },
+        function (err, response) {
+            if (err)
+                console.log('error:', err);
+            else
+                res.json(response);
+        });
 });
 
 // get the app environment from Cloud Foundry

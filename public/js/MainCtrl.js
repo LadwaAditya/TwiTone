@@ -22,11 +22,8 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
             $('#per').show();
             $.each(data, function (i, obj) {
                 tweets.push(obj.text);
-
             });
             $scope.tweets = tweets;
-
-
         })
     };
 
@@ -168,12 +165,27 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.personality = function () {
         var allTweets = "";
         for (i = 0; i < $scope.tweets.length; i++) {
-            allTweets += $scope.tweets[i];
+            allTweets += $scope.tweets[i].replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');
 
         }
-        console.log(allTweets);
+        $http.get('relationship/' + allTweets).success(function (data) {
+            var text = [];
+            var type = [];
+            $scope.textWord = [];
+            $scope.typeWord = [];
 
-        
+            var mention = data["doc"]["mentions"]["mention"];
+
+            for (var i = 0; i < mention.length; i++) {
+                text.push(mention[i]["text"]);
+                type.push(mention[i]["etype"]);
+                $scope.textWord.push(mention[i]["text"]);
+                $scope.typeWord.push(mention[i]["etype"]);
+
+
+            }
+
+        });
     }
 
 
