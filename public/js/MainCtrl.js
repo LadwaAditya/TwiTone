@@ -12,15 +12,21 @@ function rangeToPercent(value, min, max) {
 
 app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
 
+    $('#per').hide();
 
     $scope.getTweets = function () {
-        
+
         $http.get('tweet/' + $scope.user.name).success(function (data) {
             var tweets = [];
+
+            $('#per').show();
             $.each(data, function (i, obj) {
                 tweets.push(obj.text);
+
             });
             $scope.tweets = tweets;
+
+
         })
     };
 
@@ -157,6 +163,17 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
             emotionalChart.render();
 
         })
+    }
+
+    $scope.personality = function () {
+        var allTweets = "";
+        for (i = 0; i < $scope.tweets.length; i++) {
+            allTweets += $scope.tweets[i];
+
+        }
+        console.log(allTweets);
+
+        
     }
 
 
