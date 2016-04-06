@@ -14,6 +14,7 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
 
 
     $scope.getTweets = function () {
+        
         $http.get('tweet/' + $scope.user.name).success(function (data) {
             var tweets = [];
             $.each(data, function (i, obj) {
@@ -58,9 +59,7 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
                 socialName.push(o["tone_name"]);
             });
 
-            console.log(writingScore);
-            console.log(writingName);
-            console.log();
+
             var emotionalChart = new CanvasJS.Chart("chartEmotional", {
 
                 title: {
@@ -159,4 +158,6 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
 
         })
     }
+
+
 }]);
