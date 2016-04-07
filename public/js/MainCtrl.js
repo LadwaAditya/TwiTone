@@ -168,21 +168,28 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
             allTweets += $scope.tweets[i].replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');
 
         }
+
+        allTweets = allTweets.replace(/\?/g, "");
+        console.log(allTweets);
         $http.get('relationship/' + allTweets).success(function (data) {
+            console.log(data);
             var text = [];
             var type = [];
             $scope.textWord = [];
             $scope.typeWord = [];
 
             var mention = data["doc"]["mentions"]["mention"];
+            if (mention.length > 0) {
+                for (var i = 0; i < mention.length; i++) {
+                    text.push(mention[i]["text"]);
+                    type.push(mention[i]["etype"]);
+                    $scope.textWord.push(mention[i]["text"]);
+                    $scope.typeWord.push(mention[i]["etype"]);
 
-            for (var i = 0; i < mention.length; i++) {
-                text.push(mention[i]["text"]);
-                type.push(mention[i]["etype"]);
-                $scope.textWord.push(mention[i]["text"]);
-                $scope.typeWord.push(mention[i]["etype"]);
 
-
+                }
+            } else {
+                $scope.error = "Can't find any relationships. Please try a different User name";
             }
 
         });
