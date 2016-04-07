@@ -177,9 +177,10 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
             var type = [];
             $scope.textWord = [];
             $scope.typeWord = [];
+            $scope.error = "";
 
             var mention = data["doc"]["mentions"]["mention"];
-            if (mention.length > 0) {
+            if (mention != null) {
                 for (var i = 0; i < mention.length; i++) {
                     text.push(mention[i]["text"]);
                     type.push(mention[i]["etype"]);
