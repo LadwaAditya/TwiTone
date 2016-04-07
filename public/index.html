@@ -84,8 +84,13 @@
                 <h4 class="modal-title">Relationship insight</h4>
             </div>
             <div class="row" id="relation">
-                <table>
+                <table class="table-striped">
+                    <tr>
+                        <th>Mention</th>
+                        <th>Entity</th>
+                    </tr>
                     <tr ng-repeat="r in textWord track by $index">
+
                         <td> {{ r }}</td>
                         <td> {{ typeWord[$index]}}</td>
                     </tr>
