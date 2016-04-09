@@ -14,3 +14,4 @@ watson-developer-cloud <br>
 ![Phone Screenshot](screenshot/shot1.png?raw=true)
 ![Phone Screenshot](screenshot/shot2.png?raw=true)
 ![Phone Screenshot](screenshot/shot3.png?raw=true)
+![Phone Screenshot](screenshot/shot4.png?raw=true)
