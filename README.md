@@ -1,6 +1,10 @@
 # TwiTone - Real time Tweet tone Analysis
 ## A simple web app using MEAN stack and IBM watson tone Analysis 
 
+## Video Demo
+
+[Watch on Youtube](https://youtu.be/WCttyQcmEck)
+
 ##Packages used 
 
 
